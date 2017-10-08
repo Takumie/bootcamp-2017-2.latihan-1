@@ -22,27 +22,39 @@ import javax.servlet.http.HttpServletResponse;
  * @author LENOVO
  */
 
-@WebServlet(urlPatterns="/dokter/new")
-public class DokterAddController extends HttpServlet {
-    
+@WebServlet (urlPatterns = "/dokter/edit")
+public class DokterEditController extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/pages/dokter/tambahDokter.jsp").forward(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {       
+        try {
+            Integer kodeDokter = Integer.valueOf(req.getParameter("kodeDokter"));
+            Dokter d = new DokterDao().findById(kodeDokter);
+            
+            req.setAttribute("dokter", d);
+            req.getRequestDispatcher("/pages/dokter/editDokter.jsp").forward(req, resp);
+        } catch (SQLException ex) {
+            Logger.getLogger(DokterEditController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Dokter dokter = new Dokter();
+        dokter.setId(Integer.valueOf(req.getParameter("idDokter")));
         dokter.setNama(req.getParameter("nama"));
         dokter.setSpesialis(req.getParameter("spesialis"));
         
         DokterDao dokterDao = new DokterDao();
-       
+      
         try {
-            dokterDao.save(dokter);
+            dokterDao.update(dokter);
         } catch (SQLException ex) {
             Logger.getLogger(DokterAddController.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
         
+        resp.sendRedirect(req.getServletContext().getContextPath()+"/dokter/");
     }
+    
+    
 }

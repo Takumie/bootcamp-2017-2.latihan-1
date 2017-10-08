@@ -30,6 +30,7 @@
                     <td>${d.spesialis}</td>
                     <td>
                         <a href="${pageContext.servletContext.contextPath}/dokter/delete?kodeDokter=${d.id}">Hapus</a>
+                        <a href="${pageContext.servletContext.contextPath}/dokter/edit?kodeDokter=${d.id}">Edit</a>
                     </td>
                 </tr>
                 </c:forEach>

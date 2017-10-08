@@ -21,22 +21,33 @@ import javax.sql.DataSource;
  * @author LENOVO
  */
 public class DokterDao {
-    public void save(Dokter x) throws SQLException{
+    public void save(Dokter d) throws SQLException{
         KoneksiDatabase koneksiDb = new KoneksiDatabase();
         DataSource dataSource = koneksiDb.getDataSource();
         Connection connection = dataSource.getConnection();
         
         String sql = "INSERT INTO latihan_1.dokter (nama,spesialis) VALUES (?,?)";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, x.getNama());
-        statement.setString(2, x.getSpesialis());
+        statement.setString(1, d.getNama());
+        statement.setString(2, d.getSpesialis());
         statement.executeUpdate();
         statement.close();
         connection.close();
     }
     
-    public void update(){
+    public void update(Dokter d) throws SQLException{
+        KoneksiDatabase koneksiDb = new KoneksiDatabase();
+        DataSource dataSource = koneksiDb.getDataSource();
+        Connection connection = dataSource.getConnection();
         
+        String sql = "UPDATE latihan_1.dokter SET nama=?, spesialis=? where id=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, d.getNama());
+        statement.setString(2, d.getSpesialis());
+        statement.setInt(3, d.getId());
+        statement.executeUpdate();
+        statement.close();
+        connection.close();
     }
     
     public void delete(Integer idDokter) throws SQLException{
@@ -78,7 +89,25 @@ public class DokterDao {
         return listDokter;
     }
     
-    public void findById(){
-    
+    public Dokter findById(Integer idDokter) throws SQLException{
+        KoneksiDatabase koneksiDatabase = new KoneksiDatabase();
+        DataSource dataSource = koneksiDatabase.getDataSource();
+        Connection connection = dataSource.getConnection();
+        
+        String sql = "select * from latihan_1.dokter where id=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, idDokter);
+        ResultSet resultSet = statement.executeQuery();
+        Dokter dokter = new Dokter();
+        if (resultSet.next()){ 
+            dokter.setId(resultSet.getInt("id"));
+            dokter.setNama(resultSet.getString("nama"));
+            dokter.setSpesialis(resultSet.getString("spesialis"));
+        }
+        
+        resultSet.close();
+        statement.close();
+        connection.close();
+        return dokter;
     }
 }
