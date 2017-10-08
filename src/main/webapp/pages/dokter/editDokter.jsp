@@ -15,11 +15,11 @@
         <form action="${pageContext.servletContext.contextPath}/dokter/edit" method="post">
             <input type="hidden" name="idDokter" value="${dokter.id}">
             <div>
-                <label for="judulBuku">Nama :</label>
+                <label for="nama">Nama :</label>
                 <input type="text" name="nama" id="nama" value="${dokter.nama}">
             </div>
             <div>
-                <label for="tahunTerbit">Spesialis :</label>
+                <label for="spesialis">Spesialis :</label>
                 <input type="text" name="spesialis" id="spesialis" value="${dokter.spesialis}">
             </div>
             <div>

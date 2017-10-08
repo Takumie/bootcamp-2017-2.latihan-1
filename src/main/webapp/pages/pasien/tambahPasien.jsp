@@ -1,6 +1,6 @@
 <%-- 
-    Document   : tambahDokter
-    Created on : 08-Oct-2017, 09:29:58
+    Document   : tambahPasien
+    Created on : 08-Oct-2017, 14:46:29
     Author     : LENOVO
 --%>
 
@@ -9,17 +9,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tambah Dokter</title>
+        <title>Tambah Pasien</title>
     </head>
     <body>
-        <form action="${pageContext.servletContext.contextPath}/dokter/new" method="post">
+        <form action="${pageContext.servletContext.contextPath}/pasien/new" method="post">
             <div>
                 <label for="nama">Nama :</label>
                 <input type="text" name="nama" id="nama">
             </div>
             <div>
-                <label for="spesialis">Spesialis :</label>
-                <input type="text" name="spesialis" id="spesialis">
+                <label for="alamat">Alamat :</label>
+                <input type="text" name="alamat" id="alamat">
+            </div>
+            <div>
+                <label for="tanggalLahir">Tanggal Lahir</label>
+                <input type="date" name="tanggalLahir" id="tanggalLahir">
             </div>
             <div>
                 <button type="submit">Kirim</button>
