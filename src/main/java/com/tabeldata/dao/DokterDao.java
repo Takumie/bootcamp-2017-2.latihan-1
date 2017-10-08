@@ -36,11 +36,22 @@ public class DokterDao {
     }
     
     public void update(){
-    
+        
     }
     
-    public void delete(){
-    
+    public void delete(Integer idDokter) throws SQLException{
+        KoneksiDatabase koneksiDatabase = new KoneksiDatabase();
+        DataSource dataSource = koneksiDatabase.getDataSource();
+        Connection connection = dataSource.getConnection();
+        
+        String sql = "delete from latihan_1.dokter where id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        
+        statement.setInt(1, idDokter);
+        
+        statement.executeUpdate();
+        statement.close();
+        connection.close();
     }
     
     public List<Dokter> findAll() throws SQLException{

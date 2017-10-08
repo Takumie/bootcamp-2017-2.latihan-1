@@ -29,7 +29,7 @@
                     <td>${d.nama}</td>
                     <td>${d.spesialis}</td>
                     <td>
-                        
+                        <a href="${pageContext.servletContext.contextPath}/dokter/delete?kodeDokter=${d.id}">Hapus</a>
                     </td>
                 </tr>
                 </c:forEach>
