@@ -23,17 +23,16 @@
                 </tr>
             </thead>
             <tbody>
-                <%--<c:forEach items="${listDokter}" var="seorangDokter" varStatus="index">--%>
+                <c:forEach items="${listDokter}" var="d" varStatus="index">
                 <tr align="center">
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>${index.count}</td>
+                    <td>${d.nama}</td>
+                    <td>${d.spesialis}</td>
                     <td>
-<!--                        <a href="${pageContext.servletContext.contextPath}/buku/delete?kodeBuku=${sebuahBuku.id}">Hapus</a> | 
-                        <a href="${pageContext.servletContext.contextPath}/buku/edit?kodeBuku=${sebuahBuku.id}">Edit</a>-->
+                        
                     </td>
                 </tr>
-                <%--</c:forEach>--%>
+                </c:forEach>
             </tbody>
         </table>
     </body>
